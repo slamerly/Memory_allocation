@@ -8,14 +8,18 @@
 #include "PlaneActor.h"
 #include <algorithm>
 #include "Enemy.h"
-#include "BulletHole.h"
-#include "BulletHole.h"
+#include "Memory.h"
+#include "Log.h"
 
 bool Game::initialize()
 {
+	initialize_memory();
 	bool isWindowInit = window.initialize();
 	bool isRendererInit = renderer.initialize(window);
 	bool isInputInit = inputSystem.initialize();
+
+	memory_alloc(sizeof(Game), MEMORY_TAG_GAME);
+
 	return isWindowInit && isRendererInit && isInputInit; // Return bool && bool && bool ...to detect error
 }
 
@@ -138,6 +142,8 @@ void Game::load()
 	/*t = new Enemy();
 	t->setPosition(Vector3(-1400.0f, 0.0f, 0.0f));
 	t->setRotation(Quaternion(Vector3::unitZ, Maths::twoPi));*/
+
+	Log::info(get_memory_usage_str());
 }
 
 void Game::addPlane(PlaneActor* plane)
@@ -271,6 +277,9 @@ void Game::close()
 	inputSystem.close();
 	renderer.close();
 	window.close();
+
+	shutdonwn_memory();
+
 	SDL_Quit();
 }
 

@@ -5,6 +5,7 @@
 #include "SpriteComponent.h"
 #include "MeshComponent.h"
 #include "Log.h"
+#include "Memory.h"
 
 #include <GL/glew.h>
 #include <SDL_image.h>
@@ -28,6 +29,8 @@ RendererOGL::~RendererOGL()
 bool RendererOGL::initialize(Window& windowP)
 {
 	window = &windowP;
+
+	memory_alloc(sizeof(RendererOGL), MEMORY_TAG_RENDERER);
 
 	// Set OpenGL attributes
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);

@@ -3,9 +3,7 @@
 #include "Game.h"
 #include "Component.h"
 #include "Maths.h"
-
-//void DEFINE_HEAP(Actor, "Actors");
-//Heap* Actor::s_pHeap = NULL;
+#include "Memory.h"
 
 Actor::Actor() :
 	state(Actor::ActorState::Active),
@@ -15,6 +13,7 @@ Actor::Actor() :
 	mustRecomputeWorldTransform(true),
 	game(Game::instance())
 {
+	memory_alloc(sizeof(Actor), MEMORY_TAG_ACTOR);
 	game.addActor(this);
 }
 
@@ -28,20 +27,6 @@ Actor::~Actor()
 		delete components.back();
 	}
 }
-
-//void* Actor::operator new(size_t size)
-//{
-//	if (s_pHeap == NULL)
-//	{
-//		s_pHeap = HeapFactory::CreateHeap("Actor");
-//	}
-//	return ::operator new(size, s_pHeap);
-//}
-//
-//void Actor::operator delete(void* p, size_t size)
-//{
-//	::operator delete(p);
-//}
 
 void Actor::setPosition(Vector3 positionP)
 {

@@ -2,9 +2,11 @@
 #include "Log.h"
 #include <SDL_image.h>
 #include <sstream>
+#include "Memory.h"
 
 Texture::Texture() : textureID(0), filename(""), width(0), height(0), SDLTexture(nullptr)
 {
+	memory_alloc(sizeof(Texture), MEMORY_TAG_TEXTURE);
 }
 
 Texture::~Texture()

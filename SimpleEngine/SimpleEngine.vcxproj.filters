@@ -172,7 +172,7 @@
     <ClCompile Include="BulletHole.cpp">
       <Filter>GameSpecific</Filter>
     </ClCompile>
-    <ClCompile Include="Heap.cpp" />
+    <ClCompile Include="Memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -325,7 +325,7 @@
     <ClInclude Include="BulletHole.h">
       <Filter>GameSpecific</Filter>
     </ClInclude>
-    <ClInclude Include="Heap.h" />
+    <ClInclude Include="Memory.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Shaders\Sprite.frag">

@@ -3,7 +3,7 @@
 #include "Vector2.h"
 #include <SDL_stdinc.h>
 #include "Matrix4.h"
-#include "Heap.h"
+
 using std::vector;
 
 class Game;
@@ -22,9 +22,6 @@ public:
 	virtual ~Actor();
 	Actor(const Actor&) = delete;
 	Actor& operator=(const Actor&) = delete;
-
-	//static void* operator new(size_t size);
-	//static void operator delete(void* p, size_t size);
 
 	Game& getGame() const { return game; }
 	const ActorState getState() const { return state; }
@@ -61,9 +58,6 @@ private:
 	Quaternion rotation;
 	Matrix4 worldTransform;
 	bool mustRecomputeWorldTransform;
-
-	//DECLARE_HEAP;
-	//static Heap* s_pHeap;
 
 	vector<Component*> components;
 };
